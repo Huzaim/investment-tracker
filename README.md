@@ -1,6 +1,6 @@
 # Investment Portfolio Tracker
 
-A cloud-native, event-driven microservices platform for tracking investment portfolios. Built to validate architectural patterns for high-throughput, observable systems.
+A cloud-native, event-driven platform for tracking investment portfolios. Built to validate architectural patterns for high-throughput, observable systems.
 
 > This project was built as a reference architecture using AI-assisted development (Claude Code/Codex).
 
