@@ -59,7 +59,7 @@ cd investment-tracker
 docker-compose up
 ```
 
-The API will be available at `http://localhost:5000` and the frontend at `http://localhost:3000`.
+The API will be available at `http://localhost:5006`, the Scalar API reference at `http://localhost:5006/scalar/v1`, and the frontend at `http://localhost:3000`.
 
 ## Project Structure
 

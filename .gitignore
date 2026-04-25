@@ -1,0 +1,83 @@
+# .NET / C#
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+*.suo
+*.sln.iml
+.DS_Store
+packages/
+.nuget/
+*.nupkg
+*.snupkg
+*.trx
+TestResults/
+
+# Visual Studio
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.vscode/launch.json
+.vscode/settings.json
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+# NuGet
+*.nuspec
+.nuget/NuGet.Config
+.nuget/NuGet.exe
+.nuget/packages/
+.nuget/project.lock.json
+.nuget/project.assets.json
+
+# Next.js / Node.js
+node_modules/
+.next/
+.npm
+npm-debug.log
+yarn-error.log
+.env.local
+.env.*.local
+.pnp
+.pnp.js
+dist/
+out/
+build/
+.turbo/
+
+# Node version managers
+.nvmrc
+.node-version
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production.local
+
+# Runtime files
+*.log
+*.pid
+*.seed
+*.pid.lock
