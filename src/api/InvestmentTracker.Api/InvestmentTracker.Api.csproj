@@ -11,4 +11,9 @@
     <PackageReference Include="Scalar.AspNetCore" Version="2.14.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InvestmentTracker.Application\InvestmentTracker.Application.csproj" />
+    <ProjectReference Include="..\InvestmentTracker.Infrastructure\InvestmentTracker.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

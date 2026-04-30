@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InvestmentTracker.Domain\InvestmentTracker.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
