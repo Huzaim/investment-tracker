@@ -1,3 +1,5 @@
+using InvestmentTracker.Application.Assets;
+using InvestmentTracker.Infrastructure.Assets;
 using InvestmentTracker.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +14,7 @@ public static class DependencyInjection
     {
         services.AddDbContext<InvestmentTrackerDbContext>(options =>
             options.UseNpgsql(connectionString));
+        services.AddScoped<IAssetQueryService, AssetQueryService>();
 
         return services;
     }
