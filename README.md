@@ -84,10 +84,16 @@ Key decisions documented in the `adr/` folder:
 
 🚧 Work in progress — building phase by phase.
 
+See the ordered implementation checklist in [docs/roadmap.md](/Users/huzaim/Projects/investment-tracker/docs/roadmap.md).
+
 - [x] Project setup and documentation
-- [ ] .NET Core API with PostgreSQL
-- [ ] Next.js frontend
+- [x] Asset registry foundation through the query and controller layer
+- [ ] Authentication and JWT
+- [ ] Portfolio management
+- [ ] Transaction tracking
+- [ ] Price and valuation pipeline
 - [ ] Kafka event-driven messaging
+- [ ] Next.js frontend
 - [ ] Prometheus & Grafana observability
 - [ ] Kubernetes deployment
 - [ ] Terraform with LocalStack
