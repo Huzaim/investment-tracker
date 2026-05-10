@@ -84,7 +84,7 @@ Key decisions documented in the `adr/` folder:
 
 🚧 Work in progress — building phase by phase.
 
-See the ordered implementation checklist in [docs/roadmap.md](/Users/huzaim/Projects/investment-tracker/docs/roadmap.md).
+See the ordered implementation checklist in [docs/roadmap.md](../investment-tracker/docs/roadmap.md).
 
 - [x] Project setup and documentation
 - [x] Asset registry foundation through the query and controller layer
