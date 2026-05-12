@@ -11,7 +11,7 @@ public sealed class AuthController(ISender sender) : ControllerBase
 {
     [HttpPost("register")]
     [ProducesResponseType<RegisterUserResponse>(StatusCodes.Status201Created)]
-    [ProducesResponseType<RegisterUserResponse>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Register(
         [FromBody] RegisterUserRequest request)
     {
@@ -20,10 +20,16 @@ public sealed class AuthController(ISender sender) : ControllerBase
 
         if (!result.Succeeded)
         {
-            return BadRequest(new RegisterUserResponse(
-                false,
-                "Unable to register user.",
-                result.Errors));
+            return BadRequest(new ProblemDetails
+            {
+                Title = "Registration failed",
+                Status = StatusCodes.Status400BadRequest,
+                Detail = "Unable to register user.",
+                Extensions =
+                {
+                    ["errors"] = result.Errors
+                }
+            });
         }
 
         return StatusCode(
