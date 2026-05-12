@@ -10,4 +10,8 @@
     <ProjectReference Include="..\InvestmentTracker.Domain\InvestmentTracker.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="13.1.0" />
+  </ItemGroup>
+
 </Project>

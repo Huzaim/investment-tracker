@@ -4,6 +4,7 @@ using InvestmentTracker.Infrastructure.Auth;
 using InvestmentTracker.Infrastructure.Assets;
 using InvestmentTracker.Infrastructure.Persistence;
 using InvestmentTracker.Infrastructure.Persistence.Users;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,8 +34,8 @@ public static class DependencyInjection
             .AddEntityFrameworkStores<InvestmentTrackerDbContext>()
             .AddDefaultTokenProviders();
         services.AddScoped<IUserRegistrationPort, IdentityUserRegistrationPort>();
-        services.AddScoped<IRegisterUserCommandHandler, RegisterUserCommandHandler>();
         services.AddScoped<IAssetQueryService, AssetQueryService>();
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(InvestmentTracker.Application.Auth.RegisterUserCommand).Assembly));
 
         return services;
     }

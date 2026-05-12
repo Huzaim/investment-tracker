@@ -1,22 +1,24 @@
+using MediatR;
+
 namespace InvestmentTracker.Application.Auth;
 
 public sealed class RegisterUserCommandHandler(IUserRegistrationPort userRegistrationPort)
-    : IRegisterUserCommandHandler
+    : IRequestHandler<RegisterUserCommand, RegisterUserResult>
 {
-    public async Task<RegisterUserResult> HandleAsync(
-        RegisterUserCommand command,
+    public async Task<RegisterUserResult> Handle(
+        RegisterUserCommand request,
         CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        if (await userRegistrationPort.EmailExistsAsync(command.Email, cancellationToken))
+        if (await userRegistrationPort.EmailExistsAsync(request.Email, cancellationToken))
         {
             return RegisterUserResult.Failure("Email is already registered.");
         }
 
         var errors = await userRegistrationPort.CreateUserAsync(
-            command.Email,
-            command.Password,
+            request.Email,
+            request.Password,
             cancellationToken);
 
         if (errors.Count > 0)
