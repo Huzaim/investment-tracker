@@ -1,4 +1,6 @@
 using InvestmentTracker.Application.Assets;
+using InvestmentTracker.Application.Auth;
+using InvestmentTracker.Infrastructure.Auth;
 using InvestmentTracker.Infrastructure.Assets;
 using InvestmentTracker.Infrastructure.Persistence;
 using InvestmentTracker.Infrastructure.Persistence.Users;
@@ -30,6 +32,8 @@ public static class DependencyInjection
             .AddRoles<IdentityRole<Guid>>()
             .AddEntityFrameworkStores<InvestmentTrackerDbContext>()
             .AddDefaultTokenProviders();
+        services.AddScoped<IUserRegistrationPort, IdentityUserRegistrationPort>();
+        services.AddScoped<IRegisterUserCommandHandler, RegisterUserCommandHandler>();
         services.AddScoped<IAssetQueryService, AssetQueryService>();
 
         return services;
