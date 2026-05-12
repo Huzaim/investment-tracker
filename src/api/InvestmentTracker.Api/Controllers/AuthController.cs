@@ -10,8 +10,8 @@ namespace InvestmentTracker.Api.Controllers;
 public sealed class AuthController(ISender sender) : ControllerBase
 {
     [HttpPost("register")]
-    [ProducesResponseType(StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<RegisterUserResponse>(StatusCodes.Status201Created)]
+    [ProducesResponseType<RegisterUserResponse>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Register(
         [FromBody] RegisterUserRequest request)
     {
@@ -20,13 +20,14 @@ public sealed class AuthController(ISender sender) : ControllerBase
 
         if (!result.Succeeded)
         {
-            return BadRequest(new
-            {
-                message = "Unable to register user.",
-                errors = result.Errors
-            });
+            return BadRequest(new RegisterUserResponse(
+                false,
+                "Unable to register user.",
+                result.Errors));
         }
 
-        return StatusCode(StatusCodes.Status201Created);
+        return StatusCode(
+            StatusCodes.Status201Created,
+            new RegisterUserResponse(true, "User registered successfully.", Array.Empty<string>()));
     }
 }
