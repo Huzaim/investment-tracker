@@ -10,7 +10,7 @@ namespace InvestmentTracker.Api.Controllers;
 public sealed class AuthController(ISender sender) : ControllerBase
 {
     [HttpPost("register")]
-    [ProducesResponseType<RegisterUserResponse>(StatusCodes.Status201Created)]
+    [ProducesResponseType<RegisterUserSuccessResponse>(StatusCodes.Status201Created)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Register(
         [FromBody] RegisterUserRequest request)
@@ -34,6 +34,6 @@ public sealed class AuthController(ISender sender) : ControllerBase
 
         return StatusCode(
             StatusCodes.Status201Created,
-            new RegisterUserResponse(true, "User registered successfully.", Array.Empty<string>()));
+            new RegisterUserSuccessResponse("User registered successfully."));
     }
 }
