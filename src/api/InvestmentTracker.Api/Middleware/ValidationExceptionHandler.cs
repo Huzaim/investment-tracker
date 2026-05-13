@@ -1,4 +1,4 @@
-using FluentValidation;
+using InvestmentTracker.Application.Common.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,18 +11,12 @@ public sealed class ValidationExceptionHandler : IExceptionHandler
         Exception exception,
         CancellationToken cancellationToken)
     {
-        if (exception is not ValidationException validationException)
+        if (exception is not RequestValidationException validationException)
         {
             return false;
         }
 
-        var errors = validationException.Errors
-            .GroupBy(error => error.PropertyName)
-            .ToDictionary(
-                group => group.Key,
-                group => group.Select(error => error.ErrorMessage).ToArray());
-
-        var problemDetails = new ValidationProblemDetails(errors)
+        var problemDetails = new ValidationProblemDetails((IDictionary<string, string[]>)validationException.Errors)
         {
             Title = "Validation failed",
             Status = StatusCodes.Status400BadRequest,

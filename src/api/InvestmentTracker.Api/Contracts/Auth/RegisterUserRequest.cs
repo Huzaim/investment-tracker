@@ -1,5 +1,7 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace InvestmentTracker.Api.Contracts.Auth;
 
 public sealed record RegisterUserRequest(
-    string Email,
-    string Password);
+    [param: Required, EmailAddress] string Email,
+    [param: Required, MinLength(8)] string Password);

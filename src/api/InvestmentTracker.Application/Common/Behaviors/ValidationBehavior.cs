@@ -1,5 +1,6 @@
 using FluentValidation;
 using MediatR;
+using InvestmentTracker.Application.Common.Exceptions;
 
 namespace InvestmentTracker.Application.Common.Behaviors;
 
@@ -29,7 +30,12 @@ public sealed class ValidationBehavior<TRequest, TResponse>(
 
         if (failures.Length > 0)
         {
-            throw new ValidationException(failures);
+            throw new RequestValidationException(
+                failures
+                    .GroupBy(failure => failure.PropertyName)
+                    .ToDictionary(
+                        group => group.Key,
+                        group => group.Select(failure => failure.ErrorMessage).ToArray()));
         }
 
         return await next();

@@ -1,7 +1,6 @@
 using InvestmentTracker.Infrastructure;
 using InvestmentTracker.Api.Contracts.Auth;
 using InvestmentTracker.Api.Middleware;
-using FluentValidation;
 using InvestmentTracker.Infrastructure.Auth;
 using Scalar.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -17,7 +16,6 @@ builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<ValidationExceptionHandler>();
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
-builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserRequestValidator>();
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(JwtOptions.SectionName));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
