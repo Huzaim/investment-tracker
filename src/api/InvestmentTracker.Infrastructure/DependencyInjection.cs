@@ -38,6 +38,7 @@ public static class DependencyInjection
         services.AddValidatorsFromAssemblyContaining<RegisterUserCommandValidator>();
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         services.AddScoped<IUserRegistrationPort, IdentityUserRegistrationPort>();
+        services.AddScoped<IUserAuthenticationPort, IdentityUserAuthenticationPort>();
         services.AddScoped<IAssetQueryService, AssetQueryService>();
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(InvestmentTracker.Application.Auth.RegisterUserCommand).Assembly));
 

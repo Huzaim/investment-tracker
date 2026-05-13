@@ -26,8 +26,8 @@ This document turns the feature spec into a step-by-step delivery order so we ca
 
 ## Phase 2 - Authentication
 
-- [ ] ASP.NET Core Identity setup
-- [ ] User registration endpoint
+- [x] ASP.NET Core Identity setup
+- [x] User registration endpoint
 - [ ] Login endpoint with JWT issuance
 - [ ] Refresh token rotation
 - [ ] Logout and token revocation
