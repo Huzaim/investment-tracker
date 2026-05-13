@@ -1,9 +1,11 @@
 using InvestmentTracker.Application.Assets;
 using InvestmentTracker.Application.Auth;
+using InvestmentTracker.Application.Common.Behaviors;
 using InvestmentTracker.Infrastructure.Auth;
 using InvestmentTracker.Infrastructure.Assets;
 using InvestmentTracker.Infrastructure.Persistence;
 using InvestmentTracker.Infrastructure.Persistence.Users;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +35,8 @@ public static class DependencyInjection
             .AddRoles<IdentityRole<Guid>>()
             .AddEntityFrameworkStores<InvestmentTrackerDbContext>()
             .AddDefaultTokenProviders();
+        services.AddValidatorsFromAssemblyContaining<RegisterUserCommandValidator>();
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         services.AddScoped<IUserRegistrationPort, IdentityUserRegistrationPort>();
         services.AddScoped<IAssetQueryService, AssetQueryService>();
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(InvestmentTracker.Application.Auth.RegisterUserCommand).Assembly));

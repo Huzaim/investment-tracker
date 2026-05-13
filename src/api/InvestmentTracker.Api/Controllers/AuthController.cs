@@ -1,5 +1,6 @@
 using InvestmentTracker.Api.Contracts.Auth;
 using InvestmentTracker.Application.Auth;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,14 +8,23 @@ namespace InvestmentTracker.Api.Controllers;
 
 [ApiController]
 [Route("auth")]
-public sealed class AuthController(ISender sender) : ControllerBase
+public sealed class AuthController(
+    ISender sender,
+    IValidator<RegisterUserRequest> requestValidator) : ControllerBase
 {
     [HttpPost("register")]
     [ProducesResponseType<RegisterUserSuccessResponse>(StatusCodes.Status201Created)]
+    [ProducesResponseType<ValidationProblemDetails>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Register(
         [FromBody] RegisterUserRequest request)
     {
+        var validationResult = await requestValidator.ValidateAsync(request, HttpContext.RequestAborted);
+        if (!validationResult.IsValid)
+        {
+            throw new ValidationException(validationResult.Errors);
+        }
+
         var command = new RegisterUserCommand(request.Email, request.Password);
         var result = await sender.Send(command, HttpContext.RequestAborted);
 

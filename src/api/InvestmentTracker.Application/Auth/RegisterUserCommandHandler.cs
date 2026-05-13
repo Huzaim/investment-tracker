@@ -11,11 +11,6 @@ public sealed class RegisterUserCommandHandler(IUserRegistrationPort userRegistr
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        if (await userRegistrationPort.EmailExistsAsync(request.Email, cancellationToken))
-        {
-            return RegisterUserResult.Failure("Email is already registered.");
-        }
-
         var errors = await userRegistrationPort.CreateUserAsync(
             request.Email,
             request.Password,
