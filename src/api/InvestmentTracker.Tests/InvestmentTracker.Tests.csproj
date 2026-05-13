@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InvestmentTracker.Domain\InvestmentTracker.Domain.csproj" />
+    <ProjectReference Include="..\InvestmentTracker.Application\InvestmentTracker.Application.csproj" />
   </ItemGroup>
 
 </Project>
